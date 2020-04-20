@@ -29,7 +29,6 @@
 ![image](https://user-images.githubusercontent.com/28515964/55062909-9bedb580-5055-11e9-9a76-4084b0590b33.jpg)
 
 IMAGE DOCKER
-![image](https://user-images.githubusercontent.com/28515964/55063120-0f8fc280-5056-11e9-9709-e4daf3ed0d54.jpg)
 ![image](https://user-images.githubusercontent.com/28515964/55370302-6bcc6980-54d0-11e9-8ce6-5fc7359232ac.jpg)
 ![image](https://user-images.githubusercontent.com/28515964/55370336-8acafb80-54d0-11e9-9340-72bf884a4a23.jpg)
 ![image](https://user-images.githubusercontent.com/28515964/55370362-a209e900-54d0-11e9-895d-bc9c8a03cb3f.jpg)
