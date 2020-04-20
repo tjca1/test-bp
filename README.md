@@ -34,6 +34,5 @@ IMAGE DOCKER
 ![image](https://user-images.githubusercontent.com/28515964/55370362-a209e900-54d0-11e9-895d-bc9c8a03cb3f.jpg)
 ![image](https://user-images.githubusercontent.com/28515964/55370383-b948d680-54d0-11e9-892f-bc7d88e9bcf5.jpg)
 ![image](https://user-images.githubusercontent.com/28515964/55370447-dc738600-54d0-11e9-90ac-c14fb157041c.jpg)
-![image](https://user-images.githubusercontent.com/28515964/55370474-f745fa80-54d0-11e9-9851-35702e917e14.jpg)
 
 
