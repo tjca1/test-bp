@@ -1,0 +1,71 @@
+podTemplate(
+        label: 'pipeline_bp', 
+        name: 'pipeline_bp',
+        namespace: 'devops', 
+        containers: [
+                        containerTemplate
+                        (
+                            alwaysPullImage: false,
+                            args: 'cat', 
+                            command: '/bin/sh -c',
+                            envVars: [],
+                            image: 'docker', 
+                            livenessProbe: containerLivenessProbe(execArgs: '', 
+                            failureThreshold: 0, 
+                            initialDelaySeconds: 0, 
+                            periodSeconds: 0,
+                            successThreshold: 0,
+                            timeoutSeconds: 0), 
+                            name: 'docker-core', 
+                            ports: [], 
+                            privileged: false,
+                            resourceLimitCpu: '', 
+                            resourceLimitMemory: '',
+                            resourceRequestCpu: '', 
+                            resourceRequestMemory: '', 
+                            shell: null, 
+                            ttyEnabled: true, 
+                            workingDir: '/home/jenkins'
+                        )
+                        ], 
+        volumes: [
+                   hostPathVolume(hostPath: '/var/run/docker.sock', 
+                   mountPath: '/var/run/docker.sock')
+                  ], 
+        workspaceVolume: emptyDirWorkspaceVolume(false))
+   {
+    // INICIO PIPELINE
+    node('pipeline_bp') {
+        def repos
+        stage('Checkout') {
+
+                echo '==================================================INICIANDO CLONE REPOSITÓRIO=================================================='
+                repos = git credentialsId: 'credentials_g_hub',
+                        url: 'https://github.com/tjca1/test-bp.git'
+                echo repos.toString()
+                
+           }
+        stage('Package') {
+            container('docker-core') {
+                withCredentials(
+                    [
+                        usernamePassword
+                        (
+                            credentialsId: 'dockerhub',
+                             passwordVariable: 'DOCKER_HUB_PASSWORD', 
+                             usernameVariable: 'DOCKER_HUB_USER')
+                    ]
+                        ) {
+                             echo '================================================PACKAGE======================================================================='
+                             sh "docker login -u ${DOCKER_HUB_USER} -p '${DOCKER_HUB_PASSWORD}'"
+                             sh "docker build -t tjca1/projeto-spring-boot-bp:1.0.5 ."
+                             sh 'docker push tjca1/projeto-spring-boot-bp:1.0.5'
+                             sh 'docker run -d --name projeto-test-bp-container -p 8888:30001 tjca1/projeto-spring-boot-bp:1.0.5'
+                             
+                          }
+            }
+        }
+
+
+   } // FIM NODE
+}
